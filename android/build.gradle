@@ -25,7 +25,11 @@ apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
 
 android {
-    compileSdk 33
+    // Conditional for compatibility with AGP <4.2.
+    if (project.android.hasProperty("namespace")) {
+        namespace 'net.touchcapture.qr.flutterqr'
+    }
+    compileSdk 34
 
     sourceSets {
         main.java.srcDirs += 'src/main/kotlin'
@@ -33,7 +37,7 @@ android {
     defaultConfig {
         // minSdkVersion is determined by Native View.
         minSdkVersion 20
-        targetSdkVersion 33
+        targetSdkVersion 34
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         multiDexEnabled true
     }
