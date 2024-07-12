@@ -42,29 +42,14 @@ android {
         multiDexEnabled true
     }
 
-    // デシュガリングの設定を追加
     compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
-    }
-    // デシュガリングのライブラリを追加
-    dependencies {
-        coreLibraryDesugaring 'com.android.tools:desugar_jdk_libs:1.1.5'
-    }
-    
-    kotlinOptions {
-        jvmTarget = '11'
-    }
-
-    compileOptions {
-        // Flag to enable support for the new language APIs
-        coreLibraryDesugaringEnabled true
-        // Sets Java compatibility to Java 11
         sourceCompatibility JavaVersion.VERSION_11
         targetCompatibility JavaVersion.VERSION_11
+        coreLibraryDesugaringEnabled true // ここでデシュガリングを有効にします
     }
-    if (project.android.hasProperty('namespace')) {
-        namespace 'net.touchcapture.qr.flutterqr'
+
+    kotlinOptions {
+        jvmTarget = '11'
     }
 }
 
@@ -73,5 +58,5 @@ dependencies {
     implementation('com.journeyapps:zxing-android-embedded:4.3.0') { transitive = false }
     implementation 'androidx.appcompat:appcompat:1.6.1'
     implementation 'com.google.zxing:core:3.5.2'
-    coreLibraryDesugaring 'com.android.tools:desugar_jdk_libs:2.0.3'
+    coreLibraryDesugaring 'com.android.tools:desugar_jdk_libs:1.1.5' // デシュガリングライブラリのバージョンを統一
 }
